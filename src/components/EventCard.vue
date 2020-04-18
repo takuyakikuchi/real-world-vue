@@ -9,9 +9,9 @@
       <div class="px-6 py-4">
         <div class="font-bold text-xl mb-2">{{ event.title }}</div>
         <p class="text-gray-700 text-base">@{{ event.date }}</p>
-        <p class="text-gray-700 text-base">
+        <BaseIcon name="users" class="text-gray-700 text-base">
           {{ event.attendees.length }} attendees
-        </p>
+        </BaseIcon>
       </div>
     </div>
   </router-link>
