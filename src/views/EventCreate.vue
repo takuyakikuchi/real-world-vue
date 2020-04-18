@@ -1,5 +1,5 @@
 <template>
-  <h1>Event Create</h1>
+  <h1 class="text-4xl font-bold">Event Create</h1>
 </template>
 
 <script>

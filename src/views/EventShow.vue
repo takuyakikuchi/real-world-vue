@@ -1,5 +1,5 @@
 <template>
-  <h1>Show Event#{{ id }}</h1>
+  <h1 class="text-4xl font-bold">Show Event #{{ id }}</h1>
 </template>
 
 <script>
