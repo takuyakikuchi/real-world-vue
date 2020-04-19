@@ -9,9 +9,21 @@
 
 <script>
 import EventCard from '@/components/EventCard.vue'
+import axios from 'axios'
+
 export default {
   components: {
     EventCard
+  },
+  created() {
+    axious
+      .get('http://http://localhost:3000/events')
+      .then(response => {
+        console.log(response.data)
+      })
+      .catch(error => {
+        console.log('There was an error.', error.response)
+      })
   },
   data() {
     return {
