@@ -1,28 +1,38 @@
 <template>
-  <router-link
-    :to="{ name: 'event-show', params: { id: event.id } }"
-    class="w-1/2"
-  >
-    <div
-      class="rounded shadow-lg bg-gray-100 transform hover:shadow-2xl hover:scale-110"
-    >
-      <div class="px-6 py-4">
-        <div class="font-bold text-xl mb-2">{{ event.title }}</div>
-        <p class="text-gray-700 text-base">
-          @{{ event.time }} {{ event.date }}
-        </p>
-        <BaseIcon name="users" class="text-gray-700 text-base">
-          {{ event.attendees ? event.attendees.length : 0 }} attendees
-        </BaseIcon>
-      </div>
+  <router-link class="event-link" :to="{ name: 'event-show', params: { id: event.id } }">
+    <div class="event-card -shadow">
+      <span class="eyebrow">@{{ event.time }} on {{ event.date }}</span>
+      <h4 class="title">{{ event.title }}</h4>
+      <BaseIcon name="users">{{ event.attendees.length }} attending</BaseIcon>
     </div>
   </router-link>
 </template>
 
 <script>
 export default {
-  props: ['event']
+  props: {
+    event: Object
+  }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.event-card {
+  padding: 20px;
+  margin-bottom: 24px;
+  transition: all 0.2s linear;
+  cursor: pointer;
+}
+.event-card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2), 0 1px 15px 0 rgba(0, 0, 0, 0.19);
+}
+.event-card > .title {
+  margin: 0;
+}
+.event-link {
+  color: black;
+  text-decoration: none;
+  font-weight: 100;
+}
+</style>
