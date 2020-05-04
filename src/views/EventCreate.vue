@@ -10,18 +10,30 @@
       <h3>Name & describe your event</h3>
       <div class="field">
         <label>Title</label>
-        <input v-model="event.title" type="text" placeholder="Add an event title" />
+        <input
+          v-model="event.title"
+          type="text"
+          placeholder="Add an event title"
+        />
       </div>
 
       <div class="field">
         <label>Description</label>
-        <input v-model="event.description" type="text" placeholder="Add a description" />
+        <input
+          v-model="event.description"
+          type="text"
+          placeholder="Add a description"
+        />
       </div>
 
       <h3>Where is your event?</h3>
       <div class="field">
         <label>Location</label>
-        <input v-model="event.location" type="text" placeholder="Add a location" />
+        <input
+          v-model="event.location"
+          type="text"
+          placeholder="Add a location"
+        />
       </div>
 
       <h3>When is your event?</h3>
@@ -45,15 +57,56 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
-import DatePicker from 'vuejs-datepicker'
+import Datepicker from 'vuejs-datepicker'
 
 export default {
   components: {
-    // DatePicker
+    Datepicker
+  },
+  data() {
+    const times = []
+    for (let i = 1; i <= 24; i++) {
+      times.push(i + ':00')
+    }
+    return {
+      event: this.createFreshEvent(),
+      times
+    }
   },
   computed: {
     ...mapGetters(['categoriesLength', 'getEventById']),
     ...mapState(['user', 'categories'])
+  },
+  methods: {
+    createFreshEvent() {
+      const user = this.user
+      const id = Math.floor(Math.random() * 1000000000)
+      return {
+        category: '',
+        organizer: user,
+        title: '',
+        description: '',
+        location: '',
+        date: '',
+        time: '',
+        attendees: []
+      }
+    },
+    createEvent() {
+      this.$store
+        .dispatch('createEvent', this.event)
+        .then(() => {
+          // redirect to event-show page
+          this.$router.push({
+            name: 'event-show',
+            params: { id: this.event.id }
+          })
+          this.event = this.createFreshEvent()
+        })
+        .catch(() => {
+          console.log('There was a problem creating your event.')
+        })
+    }
   }
 }
 </script>
