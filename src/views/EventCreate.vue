@@ -6,6 +6,7 @@
     <ul v-for="category in categories" :key="category">
       <li>{{ category }}</li>
     </ul>
+    <p>{{ categoriesLength }}</p>
   </div>
 </template>
 
@@ -13,7 +14,12 @@
 import { mapState } from 'vuex'
 
 export default {
-  computed: mapState(['user', 'categories'])
+  computed: {
+    categoriesLength() {
+      return this.$store.getters.categoriesLength
+    },
+    ...mapState(['user', 'categories'])
+  }
 }
 </script>
 

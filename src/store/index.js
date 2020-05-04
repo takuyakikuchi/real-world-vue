@@ -16,6 +16,11 @@ export default new Vuex.Store({
       'community'
     ]
   },
+  getters: {
+    categoriesLength: store => {
+      return store.categories.length
+    }
+  },
   mutations: {},
   actions: {},
   modules: {}
