@@ -7,17 +7,16 @@
       <li>{{ category }}</li>
     </ul>
     <p>{{ categoriesLength }}</p>
+    <p>{{ getEventById(1) }}</p>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   computed: {
-    categoriesLength() {
-      return this.$store.getters.categoriesLength
-    },
+    ...mapGetters(['categoriesLength', 'getEventById']),
     ...mapState(['user', 'categories'])
   }
 }
