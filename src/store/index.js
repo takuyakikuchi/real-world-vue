@@ -20,7 +20,11 @@ export default new Vuex.Store({
     events: [],
     eventTotalCount: 0
   },
-  getters: {},
+  getters: {
+    getEventByID: state => id => {
+      return state.events.find(event => event.id === id)
+    }
+  },
   mutations: {
     ADD_EVENT(state, event) {
       state.events.push(event)
@@ -51,14 +55,19 @@ export default new Vuex.Store({
           console.log('There was an error:', error.response)
         })
     },
-    fetchSingleEvent({ commit }, id) {
-      EventService.getEvent(id)
-        .then(response => {
-          commit('SET_SINGLE_EVENT', response.data)
-        })
-        .catch(error => {
-          console.log('There was an error:', error.response)
-        })
+    fetchSingleEvent({ commit, getters }, id) {
+      const event = getters.getEventByID(id)
+      if (event) {
+        commit('SET_SINGLE_EVENT', event)
+      } else {
+        EventService.getEvent(id)
+          .then(response => {
+            commit('SET_SINGLE_EVENT', response.data)
+          })
+          .catch(error => {
+            console.log('There was an error:', error.response)
+          })
+      }
     }
   },
   modules: {}
