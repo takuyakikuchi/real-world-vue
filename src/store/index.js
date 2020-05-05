@@ -16,6 +16,7 @@ export default new Vuex.Store({
       'food',
       'community'
     ],
+    event: {},
     events: [],
     eventTotalCount: 0
   },
@@ -29,6 +30,9 @@ export default new Vuex.Store({
     },
     SET_TOTAL_COUNT(state, count) {
       state.eventTotalCount = count
+    },
+    SET_SINGLE_EVENT(state, event) {
+      state.event = event
     }
   },
   actions: {
@@ -42,6 +46,15 @@ export default new Vuex.Store({
         .then(response => {
           commit('SET_EVENTS', response.data)
           commit('SET_TOTAL_COUNT', response.headers['x-total-count'])
+        })
+        .catch(error => {
+          console.log('There was an error:', error.response)
+        })
+    },
+    fetchSingleEvent({ commit }, id) {
+      EventService.getEvent(id)
+        .then(response => {
+          commit('SET_SINGLE_EVENT', response.data)
         })
         .catch(error => {
           console.log('There was an error:', error.response)
