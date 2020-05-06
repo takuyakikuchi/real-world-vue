@@ -74,7 +74,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['categoriesLength', 'getEventById']),
+    ...mapGetters(['categoriesLength', 'event/getEventById']),
     ...mapState(['categories'])
   },
   methods: {
@@ -94,19 +94,14 @@ export default {
       }
     },
     createEvent() {
-      this.$store
-        .dispatch('event/createEvent', this.event)
-        .then(() => {
-          // redirect to event-show page
-          this.$router.push({
-            name: 'event-show',
-            params: { id: this.event.id }
-          })
-          this.event = this.createFreshEvent()
+      this.$store.dispatch('event/createEvent', this.event).then(() => {
+        // redirect to event-show page
+        this.$router.push({
+          name: 'event-show',
+          params: { id: this.event.id }
         })
-        .catch(() => {
-          console.log('There was a problem creating your event.')
-        })
+        this.event = this.createFreshEvent()
+      })
     }
   }
 }

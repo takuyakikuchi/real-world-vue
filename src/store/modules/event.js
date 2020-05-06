@@ -30,22 +30,40 @@ export const mutations = {
 }
 
 export const actions = {
-  createEvent({ commit }, event) {
-    return EventService.postEvent(event).then(() => {
-      commit('ADD_EVENT', event.data)
-    })
+  createEvent({ commit, dispatch }, event) {
+    return EventService.postEvent(event)
+      .then(() => {
+        commit('ADD_EVENT', event.data)
+        const notification = {
+          type: 'success',
+          message: 'Your event has been created!'
+        }
+        dispatch('notification/add', notification, { root: true })
+      })
+      .catch(error => {
+        const notification = {
+          type: 'error',
+          message: 'There was a problem creating your event: ' + error.message
+        }
+        dispatch('notification/add', notification, { root: true })
+        throw error
+      })
   },
-  fetchEvents({ commit }, { page, limit }) {
+  fetchEvents({ commit, dispatch }, { page, limit }) {
     return EventService.getEvents(page, limit)
       .then(response => {
         commit('SET_EVENTS', response.data)
         commit('SET_TOTAL_COUNT', response.headers['x-total-count'])
       })
       .catch(error => {
-        console.log('There was an error:', error.response)
+        const notification = {
+          type: 'error',
+          message: 'There was a problem fetching events: ' + error.message
+        }
+        dispatch('notification/add', notification, { root: true })
       })
   },
-  fetchSingleEvent({ commit, getters }, id) {
+  fetchSingleEvent({ commit, dispatch, getters }, id) {
     const event = getters.getEventByID(id)
     if (event) {
       commit('SET_SINGLE_EVENT', event)
@@ -55,7 +73,11 @@ export const actions = {
           commit('SET_SINGLE_EVENT', response.data)
         })
         .catch(error => {
-          console.log('There was an error:', error.response)
+          const notification = {
+            type: 'error',
+            message: 'There was a problem fetching an event: ' + error.message
+          }
+          dispatch('notification/add', notification, { root: true })
         })
     }
   }
