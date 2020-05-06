@@ -41,7 +41,9 @@ export default {
   created() {
     this.$store.dispatch('fetchSingleEvent', this.id)
   },
-  computed: mapState(['event'])
+  computed: mapState({
+    event: state => state.event.event
+  })
 }
 </script>
 <style scoped>

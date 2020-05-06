@@ -135,6 +135,20 @@
       "date": "2020-05-06T01:14:00.000Z",
       "time": "6:00",
       "attendees": []
+    },
+    {
+      "id": 380362755,
+      "category": "housing",
+      "organizer": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "title": "Event ID check",
+      "description": "test",
+      "location": "test",
+      "date": "",
+      "time": "",
+      "attendees": []
     }
   ]
 }
