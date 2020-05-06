@@ -95,7 +95,7 @@ export default {
     },
     createEvent() {
       this.$store
-        .dispatch('createEvent', this.event)
+        .dispatch('event/createEvent', this.event)
         .then(() => {
           // redirect to event-show page
           this.$router.push({
