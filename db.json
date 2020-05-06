@@ -111,6 +111,30 @@
       "date": "2020-05-02T07:37:00.000Z",
       "time": "21:00",
       "attendees": []
+    },
+    {
+      "id": 684742558,
+      "category": "housing",
+      "title": "test",
+      "description": "test",
+      "location": "test",
+      "date": "2020-05-08T01:12:00.000Z",
+      "time": "3:00",
+      "attendees": []
+    },
+    {
+      "id": 408158822,
+      "category": "education",
+      "organizer": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "title": "User test",
+      "description": "test",
+      "location": "tet",
+      "date": "2020-05-06T01:14:00.000Z",
+      "time": "6:00",
+      "attendees": []
     }
   ]
 }

@@ -75,11 +75,11 @@ export default {
   },
   computed: {
     ...mapGetters(['categoriesLength', 'getEventById']),
-    ...mapState(['user', 'categories'])
+    ...mapState(['categories'])
   },
   methods: {
     createFreshEvent() {
-      const user = this.user
+      const user = this.$store.state.user.user
       const id = Math.floor(Math.random() * 1000000000)
       return {
         id: id,
