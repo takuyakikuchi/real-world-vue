@@ -74,7 +74,6 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['categoriesLength', 'event/getEventById']),
     ...mapState(['categories'])
   },
   methods: {
