@@ -2,9 +2,13 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+
 // Base Components
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
+
+// External
+import 'nprogress/nprogress.css'
 
 // ---------------- Base Components Setting -----------------
 const requireComponent = require.context(

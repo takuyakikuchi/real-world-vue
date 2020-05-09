@@ -1,5 +1,12 @@
 # real-world-vue
 
+## Stack
+
+- Vue(Vue router, Vuex)
+- Axios: API call
+- JSON server: Mock DB
+- NProgress: Progress Bar
+
 ## Project setup
 
 ```
