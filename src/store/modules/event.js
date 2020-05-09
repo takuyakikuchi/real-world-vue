@@ -69,11 +69,13 @@ export const actions = {
     const event = getters.getEventByID(id)
     if (event) {
       commit('SET_SINGLE_EVENT', event)
+      return event
     } else {
       // Need to return promise for API call route guard
       return EventService.getEvent(id)
         .then(response => {
           commit('SET_SINGLE_EVENT', response.data)
+          return response.data
         })
         .catch(error => {
           const notification = {
