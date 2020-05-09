@@ -35,17 +35,26 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import store from '@/store/index'
+import { mapState } from 'vuex'
+import NProgress from 'nprogress'
 
 export default {
   props: ['id'],
-  created() {
-    this.fetchSingleEvent(this.id)
+
+  beforeRouteEnter(routeTo, routeFrom, next) {
+    NProgress.start() // Start progress bar
+
+    // Make API call
+    store.dispatch('event/fetchSingleEvent', routeTo.params.id).then(() => {
+      NProgress.done() // Finish progrss bar
+      next() // Navigation continue
+    })
   },
+
   computed: mapState({
     event: state => state.event.event
-  }),
-  methods: mapActions('event', ['fetchSingleEvent'])
+  })
 }
 </script>
 

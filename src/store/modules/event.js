@@ -49,6 +49,7 @@ export const actions = {
         throw error
       })
   },
+
   fetchEvents({ commit, dispatch }, { page, limit }) {
     return EventService.getEvents(page, limit)
       .then(response => {
@@ -63,12 +64,14 @@ export const actions = {
         dispatch('notification/add', notification, { root: true })
       })
   },
+
   fetchSingleEvent({ commit, dispatch, getters }, id) {
     const event = getters.getEventByID(id)
     if (event) {
       commit('SET_SINGLE_EVENT', event)
     } else {
-      EventService.getEvent(id)
+      // Need to return promise for API call route guard
+      return EventService.getEvent(id)
         .then(response => {
           commit('SET_SINGLE_EVENT', response.data)
         })
