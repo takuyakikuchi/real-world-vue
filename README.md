@@ -6,6 +6,11 @@ Start a mock API server(JSON Server)
 ```
 yarn db
 ```
+or
+```
+yarn db-delay
+```
+
 
 Compiles and hot-reloads for development
 ```
