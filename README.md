@@ -1,5 +1,17 @@
 # real-world-vue
 
+## To start the application
+
+Start a mock API server(JSON Server)
+```
+yarn db
+```
+
+Compiles and hot-reloads for development
+```
+yarn serve
+```
+
 ## Stack
 
 - Vue(Vue router, Vuex)
@@ -9,30 +21,17 @@
 
 ## Project setup
 
+Set up
 ```
 yarn install
 ```
 
-### Start a mock API server(JSON Server)
-
-```
-yarn db
-```
-
-### Compiles and hot-reloads for development
-
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-
+Compiles and minifies for production
 ```
 yarn build
 ```
 
-### Lints and fixes files
-
+Lints and fixes files
 ```
 yarn lint
 ```
