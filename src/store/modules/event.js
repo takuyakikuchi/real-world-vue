@@ -5,7 +5,8 @@ export const namespaced = true
 export const state = {
   event: {},
   events: [],
-  eventTotalCount: 0
+  eventTotalCount: 0,
+  limit: 3
 }
 
 export const getters = {
@@ -50,8 +51,8 @@ export const actions = {
       })
   },
 
-  fetchEvents({ commit, dispatch }, { page, limit }) {
-    return EventService.getEvents(page, limit)
+  fetchEvents({ commit, dispatch, state }, { page }) {
+    return EventService.getEvents(page, state.limit)
       .then(response => {
         commit('SET_EVENTS', response.data)
         commit('SET_TOTAL_COUNT', response.headers['x-total-count'])
