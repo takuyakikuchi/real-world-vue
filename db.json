@@ -109,6 +109,20 @@
       "date": "2020-05-02T01:11:00.000Z",
       "time": "21:00",
       "attendees": []
+    },
+    {
+      "id": 936150655,
+      "category": "housing",
+      "organizer": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "title": "Progress bar test",
+      "description": "Progress bar test",
+      "location": "",
+      "date": "",
+      "time": "",
+      "attendees": []
     }
   ]
 }
