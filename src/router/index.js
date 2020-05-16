@@ -1,10 +1,18 @@
+// Internal
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
+// External
+import NProgress from 'nprogress'
+
+// Store
+import store from '@/store/index'
+
+// Views
 import EventList from '../views/EventList.vue'
 import EventShow from '../views/EventShow.vue'
 import EventCreate from '../views/EventCreate.vue'
-import NProgress from 'nprogress'
-import store from '@/store/index'
+import NotFound from '../views/NotFound.vue'
 
 Vue.use(VueRouter)
 
@@ -32,7 +40,20 @@ const routes = [
           routeTo.params.event = event
           next()
         })
+        .catch(() => {
+          next({ name: '404', params: { resource: 'event' } })
+        })
     }
+  },
+  {
+    path: '/404',
+    name: '404',
+    component: NotFound,
+    props: true
+  },
+  {
+    path: '*',
+    redirect: { name: '404', params: { resource: 'page' } }
   }
 ]
 

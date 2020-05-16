@@ -73,18 +73,10 @@ export const actions = {
       return event
     } else {
       // Need to return promise for API call route guard
-      return EventService.getEvent(id)
-        .then(response => {
-          commit('SET_SINGLE_EVENT', response.data)
-          return response.data
-        })
-        .catch(error => {
-          const notification = {
-            type: 'error',
-            message: 'There was a problem fetching an event: ' + error.message
-          }
-          dispatch('notification/add', notification, { root: true })
-        })
+      return EventService.getEvent(id).then(response => {
+        commit('SET_SINGLE_EVENT', response.data)
+        return response.data
+      })
     }
   }
 }
