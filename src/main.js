@@ -9,6 +9,7 @@ import camelCase from 'lodash/camelCase'
 
 // External
 import 'nprogress/nprogress.css'
+import Vuelidate from 'vuelidate'
 
 // ---------------- Base Components Setting -----------------
 const requireComponent = require.context(
@@ -47,6 +48,8 @@ requireComponent.keys().forEach(fileName => {
 //  ------------------------------------------------------------
 
 Vue.config.productionTip = false
+
+Vue.use(Vuelidate)
 
 new Vue({
   router,

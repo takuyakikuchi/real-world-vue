@@ -23,6 +23,7 @@ yarn serve
 - Axios: API call
 - JSON server: Mock DB
 - NProgress: Progress Bar
+- Validation: Vuelidate
 
 ## Project setup
 
