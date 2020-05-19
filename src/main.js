@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import DateFilter from './filters/date'
 
 // Base Components
 import upperFirst from 'lodash/upperFirst'
@@ -50,6 +51,8 @@ requireComponent.keys().forEach(fileName => {
 Vue.config.productionTip = false
 
 Vue.use(Vuelidate)
+
+Vue.filter('date', DateFilter)
 
 new Vue({
   router,
