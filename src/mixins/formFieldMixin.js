@@ -1,15 +1,15 @@
 export const formFieldMixin = {
   inheritAttrs: false,
   props: {
-    value: [String, Number],
     label: {
       type: String,
       default: ''
-    }
+    },
+    value: [String, Number]
   },
   methods: {
-    updateValue(e) {
-      this.$emit('input', e.target.value)
+    updateValue(event) {
+      this.$emit('input', event.target.value)
     }
   }
 }

@@ -2,17 +2,12 @@
   <div>
     <label v-if="label">{{ label }}</label>
     <!-- @attributes: place-holder and type -->
-    <select
-      :value="value"
-      v-bind="$attrs"
-      @change="updateValue"
-      v-on="$listeners"
-    >
+    <select :value="value" @change="updateValue" v-bind="$attrs">
       <option
-        :key="option.id"
-        :selected="value === option"
-        :value="option"
         v-for="option in options"
+        :value="option"
+        :key="option.id"
+        :selected="option === value"
         >{{ option }}</option
       >
     </select>

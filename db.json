@@ -71,6 +71,20 @@
           "name": "Mary Gordon"
         }
       ]
+    },
+    {
+      "id": 403361479,
+      "category": "housing",
+      "organizer": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "title": "test",
+      "description": "test",
+      "location": "test",
+      "date": "2020-05-02T06:03:00.000Z",
+      "time": "3:00",
+      "attendees": []
     }
   ]
 }

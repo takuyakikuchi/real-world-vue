@@ -5,25 +5,24 @@
       <BaseSelect
         :class="{ error: $v.event.category.$error }"
         :options="categories"
-        @blur="$v.event.category.touch()"
+        @blur="$v.event.category.$touch()"
         label="Select a category"
         v-model="event.category"
       />
-      <div v-if="$v.event.category.$error">
+      <template v-if="$v.event.category.$error">
         <p v-if="!$v.event.category.required" class="errorMessage">
           Category is required.
         </p>
-      </div>
+      </template>
 
       <h3>Name & describe your event</h3>
       <BaseInput
         :class="{ error: $v.event.title.$error }"
-        @blur="$v.event.title.touch()"
+        @blur="$v.event.title.$touch()"
         class="field"
         label="Title"
         placeholder="Add an event title"
         type="text"
-        v-model.trim="event.title"
         v-model="event.title"
       />
       <template v-if="$v.event.title.$error">
@@ -39,7 +38,7 @@
         label="Description"
         placeholder="Add a description"
         type="text"
-        v-model.trim="event.description"
+        v-model="event.description"
       />
       <template v-if="$v.event.description.$error">
         <p v-if="!$v.event.description.required" class="errorMessage">
@@ -55,7 +54,7 @@
         type="text"
         class="field"
         :class="{ error: $v.event.location.$error }"
-        @blur="$v.event.description.$touch()"
+        @blur="$v.event.location.$touch()"
       />
       <template v-if="$v.event.location.$error">
         <p v-if="!$v.event.location.required" class="errorMessage">
@@ -83,7 +82,7 @@
       <BaseSelect
         label="Select a time"
         :options="times"
-        v-model.trim="event.time"
+        v-model="event.time"
         class="field"
         :class="{ error: $v.event.time.$error }"
         @blur="$v.event.time.$touch()"
@@ -122,9 +121,9 @@ export default {
       times.push(i + ':00')
     }
     return {
-      event: this.createFreshEvent(),
       times,
-      categories: this.$store.state.categories
+      categories: this.$store.state.categories,
+      event: this.createFreshEvent()
     }
   },
   validations: {

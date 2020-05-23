@@ -35,6 +35,7 @@ export const actions = {
     return EventService.postEvent(event)
       .then(() => {
         commit('ADD_EVENT', event)
+        commit('SET_SINGLE_EVENT', event)
         const notification = {
           type: 'success',
           message: 'Your event has been created!'
@@ -67,7 +68,12 @@ export const actions = {
   },
 
   fetchSingleEvent({ commit, dispatch, getters }, id) {
-    const event = getters.getEventByID(id)
+    if (id == state.event.id) {
+      return state.event
+    }
+
+    let event = getters.getEventByID(id)
+
     if (event) {
       commit('SET_SINGLE_EVENT', event)
       return event
